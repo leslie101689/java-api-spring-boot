@@ -9,8 +9,12 @@ public class BinarySearchImpl {
 	@Autowired
 	private SortAlgorithm sortAlgorithm;
 	
-	
-	public BinarySearchImpl(SortAlgorithm sortAlgorithm) {
+	//using autowired - setter is not really required
+//	public void setSortAlgorithm(SortAlgorithm sortAlgorithm) {
+//		this.sortAlgorithm = sortAlgorithm;
+//	}
+
+	public BinarySearchImpl(SortAlgorithm sortAlgorithm) { 
 		super();
 		this.sortAlgorithm = sortAlgorithm;
 	}
