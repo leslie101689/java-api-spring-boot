@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" 
 targetNamespace="http://in28minutes.com/cources" 
-xmlns:tns="http://www.example.org/course-details" elementFormDefault="qualified">
+xmlns:tns="http://in28minutes.com/cources" elementFormDefault="qualified">
 	<element name="GetCourseDetailsRequest">
 		<complexType>
 			<sequence>
@@ -9,4 +9,19 @@ xmlns:tns="http://www.example.org/course-details" elementFormDefault="qualified"
 			</sequence>
 		</complexType>
 	</element>
+	
+	<element name="GetCourseDetailsResponse">
+		<complexType>
+			<sequence>
+				<element name="CourseDetails" type="tns:CourseDetails"></element>
+			</sequence>
+		</complexType>
+	</element>
+	<complexType name="CourseDetails">
+		<sequence>
+			<element name="id" type="integer"/>
+			<element name="name" type="string"/>
+			<element name="description" type="string"/>
+		</sequence>
+	</complexType>
 </schema>
