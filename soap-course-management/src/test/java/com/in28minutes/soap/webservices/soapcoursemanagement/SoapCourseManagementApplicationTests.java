@@ -1,10 +1,10 @@
-package com.in28minutes.soap.webservices.coursemanagement;
+package com.in28minutes.soap.webservices.soapcoursemanagement;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CourseManagementApplicationTests {
+class SoapCourseManagementApplicationTests {
 
 	@Test
 	void contextLoads() {

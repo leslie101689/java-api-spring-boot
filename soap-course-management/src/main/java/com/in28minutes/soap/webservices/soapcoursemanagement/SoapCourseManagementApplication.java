@@ -1,13 +1,13 @@
-package com.in28minutes.soap.webservices.coursemanagement;
+package com.in28minutes.soap.webservices.soapcoursemanagement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CourseManagementApplication {
+public class SoapCourseManagementApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CourseManagementApplication.class, args);
+		SpringApplication.run(SoapCourseManagementApplication.class, args);
 	}
 
 }
