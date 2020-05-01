@@ -17,6 +17,7 @@ import com.in28minutes.courses.GetCourseDetailsRequest;
 import com.in28minutes.courses.GetCourseDetailsResponse;
 import com.in28minutes.soap.webservices.soapcoursemanagement.soap.bean.Course;
 import com.in28minutes.soap.webservices.soapcoursemanagement.soap.service.CourseDetailsService;
+import com.in28minutes.soap.webservices.soapcoursemanagement.soap.service.CourseDetailsService.Status;
 
 @Endpoint
 public class CourseDetailsEndpoint {
@@ -79,12 +80,19 @@ public class CourseDetailsEndpoint {
 	@ResponsePayload
 	public DeleteCourseDetailsResponse deleteCourseDetailsRequest(@RequestPayload DeleteCourseDetailsRequest request) {
 		
-		int status = service.deleteById(request.getId());
+		Status status = service.deleteById(request.getId());
 		
 		DeleteCourseDetailsResponse response = new DeleteCourseDetailsResponse();
-		response.setStatus(status);
+		response.setStatus(mapStatus(status));
 		
 		return response;
+	}
+
+	private com.in28minutes.courses.Status mapStatus(Status status) {
+		if(status == Status.FAILURE)
+			return com.in28minutes.courses.Status.FAILURE;
+		
+		return com.in28minutes.courses.Status.SUCCESS;
 	}
 
 }
