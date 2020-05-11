@@ -1,18 +1,19 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import java.net.URI;
 import javax.validation.*;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -30,12 +31,21 @@ public class UserResource {
 	
 	//GET /users/{id}
 	@GetMapping("/users/{id}")
-	public User retrieveUser(@PathVariable int id) {
+	public EntityModel<User> retrieveUser(@PathVariable int id) {
 		User user = service.findOne(id);
 		if(user == null) {
 			throw new UserNotFoundException("id-" + id);
 		}
-		return user;
+		
+		//"all-users", SERVER_PATH + "/users"
+		//retrieveAllUsers
+		
+		Link linkTo = linkTo(methodOn(this.getClass()).retrieveAllUsers()).withRel("all-users");
+		
+		//HATEOAS
+		EntityModel<User> resource = new EntityModel<>(user, linkTo);
+		
+		return resource;
 	}
 	
 	@DeleteMapping("/users/{id}")
@@ -49,6 +59,9 @@ public class UserResource {
 	//CREATE
 	//input - details of user
 	//output - CREATED & Return the created URI
+	
+	//HATEOAS
+	
 	@PostMapping("/users")
 	public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
 		User savedUser = service.save(user);
