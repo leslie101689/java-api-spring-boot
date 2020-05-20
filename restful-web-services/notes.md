@@ -20,3 +20,11 @@ User -> Posts
 		</dependency>
 spring.security.user.name=username
 spring.security.user.password=password
+
+#table structure 
+create table user (
+id integer not null, 
+birth_date timestamp, 
+name varchar(255), 
+primary key (id)
+)
